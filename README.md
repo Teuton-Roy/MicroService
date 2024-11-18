@@ -31,6 +31,7 @@
 
     Here I used Query parameter mean's passing the parameter in the form of
     query.
+``` Query Parameter: It is a optional parameters in a URL that modify the behaviour of request ```
 
     The reason behind resturcturing the urls is my microservices less to know about each other, need to be independent.
 
