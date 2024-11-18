@@ -31,7 +31,15 @@
 
     Here I used Query parameter mean's passing the parameter in the form of
     query.
-``` Query Parameter: It is a optional parameters in a URL that modify the behaviour of request ```
+``` Query Parameter: It is a optional parameters in a URL that modify the behaviour of request ```  
+
+    In new urls we can see I used [ GET /reviews?companyId={companyId} ]
+    here review microservice companyId not a part of this ms that's
+    why I accepted it as query parameter.
+
+``` Path Parameter: When I pass a parameter in the path itself ```
+
+
 
     The reason behind resturcturing the urls is my microservices less to know about each other, need to be independent.
 
