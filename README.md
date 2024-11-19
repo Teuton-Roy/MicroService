@@ -62,5 +62,7 @@
         |        mechanism where the client wait for a reponse from the server       
         |         before proceeding and this can achived   through HTTP based protocols like rest
         |
-        |---> 2. Asynchronous Communication
+        |---> 2. Asynchronous Communication: In this communication microservices can work Asynchronously and 
+        |they communicate with the help of message queues or message brokers like
+        |rabit mq, apache kafka, 
         |
