@@ -44,3 +44,14 @@
     The reason behind resturcturing the urls is my microservices less to know about each other, need to be independent.
 
     
+# ``` Inter-service communication: ```
+    Here I have 3 microservices running on diffierent ports, use different database but for user or client these services should be running as a single unit.
+    There is a need for these services to communicate with each others so they can
+    function as a single unit. This is where we need [Inter-Service Communication].
+
+``` What is Inter-Service Communication:- ```
+
+    In simple term, It's a method through which microservices in an application communicate with each other.
+
+    This communication between services can happen Synchronously and Asynchronously
+    and we can use protocol like HTTP or Rest messaging
