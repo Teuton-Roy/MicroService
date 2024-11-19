@@ -59,7 +59,7 @@
 ## ```Ways to implement ```
         |
         |---> 1. Synchronous Communication: It uses Synchronous request response      
-        mechanism where the client wait for a reponse from the server before proceeding and this can achived through HTTP based protocols like rest
+        |        mechanism where the client wait for a reponse from the server       before proceeding and this can achived through HTTP based protocols like rest
         |
         |---> 2. Asynchronous Communication
         |
