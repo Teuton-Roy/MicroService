@@ -55,3 +55,9 @@
 
     This communication between services can happen Synchronously and Asynchronously
     and we can use protocol like HTTP or Rest messaging
+
+## ```Ways to implement ```
+        |
+        |--- 1. Synchronous Communication: It uses Synchronous request response      mechanism where the client wait for a reponse from the server before proceeding and this can achived through HTTP based protocols like rest
+        |
+        |
