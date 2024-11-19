@@ -66,3 +66,23 @@
         |           they communicate with the help of message queues or message brokers like
         |           rabit mq, apache kafka, 
         |
+
+# ```Rest Template ```
+
+    It is a class in spring framework that simplifies the HTTP communication 
+    between two microservices.
+
+    Now I can use this for communicating between microservices and it does so 
+    by abstracting the lower level detail into a very high level easy to use
+    methods.
+
+## ```Why do I we need Rest Template with microsevices ```
+
+    Because, we will using it to interact between different microservices that we have.
+
+![Rest Template](image-3.png)
+
+    Let's say, I have Job microservice and compant microservice and if these two 
+    microservice communicate with each other and sharing any data then we use 
+    Rest Template and we will be using HTTP protocol by which we send the HTTP
+    requests and handel HTTP responses.
