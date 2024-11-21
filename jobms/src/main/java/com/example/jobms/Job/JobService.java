@@ -1,5 +1,7 @@
 package com.example.jobms.Job;
 
+import com.example.jobms.DTO.JobWithCompanyDTO;
+
 import java.util.*;
 
 //Created this as an Interface to promote loss coupling.
@@ -9,7 +11,8 @@ public interface JobService {
 
 
     //defining methods here...
-    List<Job>findall();
+//    List<Job>findall();
+    List<JobWithCompanyDTO> findall();
     void createJob(Job job);
     Job getJobById(Long id);
     boolean DeleteJobById(Long id);

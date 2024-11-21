@@ -1,5 +1,6 @@
 package com.example.jobms.Job;
 
+import com.example.jobms.DTO.JobWithCompanyDTO;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -23,7 +24,9 @@ public class JobController {
 
     //Get list of all jobs
     @GetMapping("/jobs")
-    public ResponseEntity<List<Job>> findAll(){ //this the endpoint we are creating here which return all the jobs
+    //this the endpoint we are creating here which return all the jobs with company
+//    public ResponseEntity<List<Job>> findAll(){
+    public ResponseEntity<List<JobWithCompanyDTO>> findAll(){
         return ResponseEntity.ok(jobservice.findall());
     }
 

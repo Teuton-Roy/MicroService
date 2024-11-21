@@ -87,4 +87,10 @@
     Rest Template and we will be using HTTP protocol by which we send the HTTP
     requests and handel HTTP responses.
 
+# ```DTO Pattern ```
+
+    DTO stands for: Data Transfer Object
+
+``` It is a design pattern used to transfer data between software application subsystem.```
+
     

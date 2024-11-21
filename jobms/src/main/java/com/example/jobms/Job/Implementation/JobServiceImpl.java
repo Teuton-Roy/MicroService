@@ -1,5 +1,6 @@
 package com.example.jobms.Job.Implementation;
 
+import com.example.jobms.DTO.JobWithCompanyDTO;
 import com.example.jobms.Job.External.Company;
 import com.example.jobms.Job.JobRepository;
 import com.example.jobms.Job.Job;
@@ -31,13 +32,31 @@ public class JobServiceImpl implements JobService {
 
     //Implement find all jobs
     @Override
-    public List<Job> findall() {
-//        return jobs;
+//    public List<Job> findall() {
+    public List<JobWithCompanyDTO> findall() {
+//        RestTemplate restTemplate = new RestTemplate();
+//        Company company = restTemplate.getForObject("http://localhost:8081/companies/1", Company.class);
+//        System.out.println("Company: "+company.getName());
+//        System.out.println("Company: "+company.getId());
+//        return jobRepository.findAll();
+
+        //change the code for show every job with company with the help of DTO class
+        List<Job> jobs = jobRepository.findAll();
+        List<JobWithCompanyDTO> jobWithCompanyDTOs = new ArrayList<>();
         RestTemplate restTemplate = new RestTemplate();
-        Company company = restTemplate.getForObject("http://localhost:8081/companies/1", Company.class);
-        System.out.println("Company: "+company.getName());
-        System.out.println("Company: "+company.getId());
-        return jobRepository.findAll();
+
+        //add a for loop because, for every job I have in this list I need the company details
+        //every job has a companyId, so with the help of loop I iterate list of job and fetch companyId from job
+        //using RestTemplate call company microservice and get the company object and add it to the DTO
+
+        for(Job job: jobs){
+            JobWithCompanyDTO jobWithCompanyDTO = new JobWithCompanyDTO();
+            jobWithCompanyDTO.setJob(job);
+            Company company = restTemplate.getForObject("http://localhost:8081/companies/" + job.getCompanyId(), Company.class);
+            jobWithCompanyDTO.setCompany(company);
+            jobWithCompanyDTOs.add(jobWithCompanyDTO);
+        }
+        return  jobWithCompanyDTOs;
     }
 
 
