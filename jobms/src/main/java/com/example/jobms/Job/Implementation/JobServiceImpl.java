@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service                                                                   //It tells that this class is a service
 public class JobServiceImpl implements JobService {
@@ -43,22 +44,26 @@ public class JobServiceImpl implements JobService {
         //change the code for show every job with company with the help of DTO class
         List<Job> jobs = jobRepository.findAll();
         List<JobWithCompanyDTO> jobWithCompanyDTOs = new ArrayList<>();
-        RestTemplate restTemplate = new RestTemplate();
 
+        //use ConvertToDTO method using stream
+        return jobs.stream() //convert the list into a list
+                .map(this::ConvertToDTO) //applying ConvertToDTO function with the help of Map() to every object in job
+                .collect(Collectors.toList());//collect operation used to collect element of the stream into a new collection
+    }
+
+
+    private JobWithCompanyDTO ConvertToDTO(Job job){
         //add a for loop because, for every job I have in this list I need the company details
         //every job has a companyId, so with the help of loop I iterate list of job and fetch companyId from job
         //using RestTemplate call company microservice and get the company object and add it to the DTO
+        JobWithCompanyDTO jobWithCompanyDTO = new JobWithCompanyDTO();
+        jobWithCompanyDTO.setJob(job);
+        RestTemplate restTemplate = new RestTemplate();
+        Company company = restTemplate.getForObject("http://localhost:8081/companies/" + job.getCompanyId(), Company.class);
+        jobWithCompanyDTO.setCompany(company);
 
-        for(Job job: jobs){
-            JobWithCompanyDTO jobWithCompanyDTO = new JobWithCompanyDTO();
-            jobWithCompanyDTO.setJob(job);
-            Company company = restTemplate.getForObject("http://localhost:8081/companies/" + job.getCompanyId(), Company.class);
-            jobWithCompanyDTO.setCompany(company);
-            jobWithCompanyDTOs.add(jobWithCompanyDTO);
-        }
-        return  jobWithCompanyDTOs;
+        return jobWithCompanyDTO;
     }
-
 
     //Implement create jobs
     @Override
