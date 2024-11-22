@@ -2,7 +2,9 @@ package com.example.companyms.company.Implementation;
 import com.example.companyms.company.Company;
 import com.example.companyms.company.CompanyRepository;
 import com.example.companyms.company.CompanyService;
+import com.example.companyms.company.External.Review;
 import org.springframework.stereotype.Service;
+import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
 import java.util.Optional;
@@ -18,6 +20,13 @@ public class CompanyServiceImpl implements CompanyService {
 
     @Override
     public List<Company> getallCompanies() {
+
+        RestTemplate restTemplate = new RestTemplate();
+        Review review = restTemplate.getForObject("http://localhost:8083/reviews/1", Review.class);
+        System.out.println("Review "+ review.getTitle());
+        System.out.println("Description "+review.getDescription());
+
+
         return companyRepository.findAll();  //this method returns all the instance of the company in database
     }
 

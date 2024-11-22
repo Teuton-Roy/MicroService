@@ -12,6 +12,7 @@ public class Company {
     private Long id;
     private String name;
     private String description;
+    private Long reviewId;
 
 
     //map every company to list of jobs
@@ -57,4 +58,11 @@ public class Company {
         this.description = description;
     }
 
+    public Long getReviewId() {
+        return reviewId;
+    }
+
+    public void setReviewId(Long reviewId) {
+        this.reviewId = reviewId;
+    }
 }
