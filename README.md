@@ -93,4 +93,27 @@
 
 ``` It is a design pattern used to transfer data between software application subsystem.```
 
+    With the help of DTO, I can retrive necessary data from microservice independently and I can map them to respestive
+    DTO.
+
+``` Example```
+
+![DTO](image-4.png)
+
+    In the above photo you see a company microservice and job microservice
+    
+    Now, let's say, to the user I wish to show the job Object as well as
+    the company Object.
+    
+    Whenever, a user calls a Job API I wish to provide company information
+    along with the job.
+
+``` But How??```
+
+    This can done by DTO [ Data Transfer Object ]
+
+    Add DTO to application, and this DTO have object of both job and company classes
+    and then this can be converted into response to the user.
+``` So it gives better control to how I can manage what is being shown to user```
+
     
