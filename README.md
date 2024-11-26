@@ -135,4 +135,19 @@
     so service registry will know all the microservices that exist in a architecture
     If we want to communicate with any microservice just go to service registry to get the location of that
     particular microservice and communicate with it.
-    
+
+### ```How Service Discovrey Process Works```
+
+![Service Discovrey Process](image-7.png)
+
+    Lets say I have 2 microservice Job-Microservice, Review-MicroService
+
+``` 1. Register: ```  
+        
+        Job microservice will register itself with service registry that exist in the microservices architecture
+        Now, whenever review microservice wishes to communicate with job service, review service go to service registry
+        and do a Service Discovrey Process.
+
+``` 2. Service Discovrey Process: ```  
+        It's a request to cummunicate with to a particular service and then service registry will help the review service
+        to cummunicate with job microservice.
