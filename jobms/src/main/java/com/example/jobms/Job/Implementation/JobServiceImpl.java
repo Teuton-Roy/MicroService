@@ -45,7 +45,7 @@ public class JobServiceImpl implements JobService {
         List<JobWithCompanyDTO> jobWithCompanyDTOs = new ArrayList<>();
 
         //use ConvertToDTO method using stream
-        return jobs.stream() //convert the list into a list
+        return jobs.stream() //convert the list into a stream
                 .map(this::ConvertToDTO) //applying ConvertToDTO function with the help of Map() to every object in job
                 .collect(Collectors.toList());//collect operation used to collect element of the stream into a new collection
     }
