@@ -152,3 +152,19 @@
 
         It's a request to cummunicate with to a particular service and then service registry will help the review service
         to cummunicate with job microservice.
+
+## ```Why using a Service Registry is Beneficial ? ```
+
+``` 1. Dynamic Service Discovery:```  
+        
+        With a service registry microservice can dynamically discover the locations of other services at runtime.
+
+``` 2. Load Balancing: ```  
+
+        service registry can also provide Load Balancing capabilities.
+        It does so by incoming requests accross multiple instances of a service.
+
+### ```How implement service registry: ```  
+
+    for Spring-Boot: [ spring cloud eureka ] 
+    
