@@ -116,5 +116,23 @@
     and then this can be converted into response to the user.
 ``` So it gives better control to how I can manage what is being shown to user```
 
-    
+# ```What is Service Registry and Why do we need it in our MicroService Architechture ? ```
 
+``` Service Registry:```  
+    A service Registry is used in microservice architechture to enable dynamic service discovery
+
+##  
+    In microservices architecture Inter-Service communication is really importand and for Inter-Service communication
+    we have hardcoded URLs that we can used communication but this is not a good practice.
+
+    So, This Service Registry is a another approach  -
+
+![Service Registry](image-5.png)
+
+    The above picture we have service registry and other microservices (Compnayms, jobms, reviewms) 
+    Now, What will heppens is every micro-service will register itself with service registry
+    So we can say it's database that has been populated with the location of different microservices that exist
+    so service registry will know all the microservices that exist in a architecture
+    If we want to communicate with any microservice just go to service registry to get the location of that
+    particular microservice and communicate with it.
+    
