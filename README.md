@@ -149,5 +149,6 @@
         and do a Service Discovrey Process.
 
 ``` 2. Service Discovrey Process: ```  
+
         It's a request to cummunicate with to a particular service and then service registry will help the review service
         to cummunicate with job microservice.
