@@ -167,4 +167,5 @@
 ### ```How implement service registry: ```  
 
     for Spring-Boot: [ spring cloud eureka ] 
-    
+
+...
