@@ -5,6 +5,7 @@ import com.example.jobms.Job.External.Company;
 import com.example.jobms.Job.JobRepository;
 import com.example.jobms.Job.Job;
 import com.example.jobms.Job.JobService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -20,6 +21,9 @@ public class JobServiceImpl implements JobService {
 
     //Define repository object
     JobRepository jobRepository;
+
+    @Autowired //this means provide us the instance of restTemplate on run time
+    RestTemplate restTemplate;
 
     //Contractor
     public JobServiceImpl(JobRepository jobRepository){
@@ -57,8 +61,8 @@ public class JobServiceImpl implements JobService {
         //using RestTemplate call company microservice and get the company object and add it to the DTO
         JobWithCompanyDTO jobWithCompanyDTO = new JobWithCompanyDTO();
         jobWithCompanyDTO.setJob(job);
-        RestTemplate restTemplate = new RestTemplate();
-        Company company = restTemplate.getForObject("http://localhost:8081/companies/"+job.getCompanyId(), Company.class);
+//        RestTemplate restTemplate = new RestTemplate();
+        Company company = restTemplate.getForObject("http://COMPANYMS:8081/companies/"+job.getCompanyId(), Company.class);
         jobWithCompanyDTO.setCompany(company);
 
         return jobWithCompanyDTO;
