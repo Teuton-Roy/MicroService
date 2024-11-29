@@ -1,10 +1,11 @@
 package com.example.jobms.DTO;
+import java.util.*;
 import com.example.jobms.Job.External.Company;
-import com.example.jobms.Job.Job;
+import com.example.jobms.Job.External.Review;
 
 //implement DTO Class
 
-public class JobWithCompanyDTO {
+public class JobDTO {
     private Long id; //unique id for each job
     private String title;
     private String description;
@@ -12,6 +13,7 @@ public class JobWithCompanyDTO {
     private String maxSalary;
     private String location;
     private Company company;
+    private List<Review> reviews;
 
 
     //Getter and Setter
@@ -71,5 +73,13 @@ public class JobWithCompanyDTO {
 
     public void setCompany(Company company) {
         this.company = company;
+    }
+
+    public List<Review> getReviews() {
+        return reviews;
+    }
+
+    public void setReviews(List<Review> reviews) {
+        this.reviews = reviews;
     }
 }

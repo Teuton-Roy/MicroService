@@ -1,12 +1,16 @@
 package com.example.jobms.Job.Implementation;
 
-import com.example.jobms.DTO.JobWithCompanyDTO;
+import com.example.jobms.DTO.JobDTO;
 import com.example.jobms.Job.External.Company;
+import com.example.jobms.Job.External.Review;
 import com.example.jobms.Job.JobRepository;
 import com.example.jobms.Job.Job;
 import com.example.jobms.Job.JobService;
 import com.example.jobms.Job.mapper.JobMapper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.core.ParameterizedTypeReference;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 
@@ -38,7 +42,7 @@ public class JobServiceImpl implements JobService {
     //Implement find all jobs
     @Override
 //    public List<Job> findall() {
-    public List<JobWithCompanyDTO> findall() {
+    public List<JobDTO> findall() {
 //        RestTemplate restTemplate = new RestTemplate();
 //        Company company = restTemplate.getForObject("http://localhost:8081/companies/1", Company.class);
 //        System.out.println("Company: "+company.getName());
@@ -47,7 +51,7 @@ public class JobServiceImpl implements JobService {
 
         //change the code for show every job with company with the help of DTO class
         List<Job> jobs = jobRepository.findAll();
-        List<JobWithCompanyDTO> jobWithCompanyDTOs = new ArrayList<>();
+        List<JobDTO> jobDTOS = new ArrayList<>();
 
         //use ConvertToDTO method using stream
         return jobs.stream() //convert the list into a stream
@@ -56,7 +60,7 @@ public class JobServiceImpl implements JobService {
     }
 
 
-    private JobWithCompanyDTO ConvertToDTO(Job job){
+    private JobDTO ConvertToDTO(Job job){
         //add a for loop because, for every job I have in this list I need the company details
         //every job has a companyId, so with the help of loop I iterate list of job and fetch companyId from job
         //using RestTemplate call company microservice and get the company object and add it to the DTO
@@ -65,12 +69,22 @@ public class JobServiceImpl implements JobService {
 //        jobWithCompanyDTO.setJob(job);
 //        RestTemplate restTemplate = new RestTemplate();
 
+        //call company api
         Company company = restTemplate.getForObject("http://COMPANYMS:8081/companies/"+job.getCompanyId(), Company.class);
+        //call review api
+        ResponseEntity<List<Review>> reviewResponse = restTemplate.exchange(
+                "http://REVIEWMS:8083/reviews?companyId=" + job.getCompanyId(),
+                HttpMethod.GET,
+                null,
+                new ParameterizedTypeReference<List<Review>>() {
+        });
 
-        JobWithCompanyDTO jobWithCompanyDTO = JobMapper.mapToJobWithCompanyDTO(job, company);
-        jobWithCompanyDTO.setCompany(company);
+        List<Review> reviews = reviewResponse.getBody();
 
-        return jobWithCompanyDTO;
+        JobDTO jobDTO = JobMapper.mapToJobWithCompanyDTO(job, company, reviews);
+//        jobDTO.setCompany(company);
+
+        return jobDTO;
     }
 
     //Implement create jobs
@@ -85,7 +99,7 @@ public class JobServiceImpl implements JobService {
     //Implement getJobById
     //I need to add company object to the response, for that I use JobWithCompanyDTO class
     @Override
-    public JobWithCompanyDTO getJobById(Long id) {
+    public JobDTO getJobById(Long id) {
 //        for(Job job: jobs){
 //            if(job.getId().equals(id)) {
 //                return job;

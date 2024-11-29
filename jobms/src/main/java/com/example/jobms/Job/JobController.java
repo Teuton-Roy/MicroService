@@ -1,6 +1,6 @@
 package com.example.jobms.Job;
 
-import com.example.jobms.DTO.JobWithCompanyDTO;
+import com.example.jobms.DTO.JobDTO;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -26,7 +26,7 @@ public class JobController {
     @GetMapping("/jobs")
     //this the endpoint we are creating here which return all the jobs with company
 //    public ResponseEntity<List<Job>> findAll(){
-    public ResponseEntity<List<JobWithCompanyDTO>> findAll(){
+    public ResponseEntity<List<JobDTO>> findAll(){
         return ResponseEntity.ok(jobservice.findall());
     }
 
@@ -62,10 +62,10 @@ public class JobController {
 
     //Get specific job by ID using ResponseEntity for batter readability and HTTP response
     @GetMapping("/jobsById/{id}") // {} -> dynamic, id -> variable name
-    public ResponseEntity<JobWithCompanyDTO> getJobById(@PathVariable Long id) {
-        JobWithCompanyDTO jobWithCompanyDTO = jobservice.getJobById(id);
-        if (jobWithCompanyDTO != null){
-            return new ResponseEntity<>(jobWithCompanyDTO, HttpStatus.OK);
+    public ResponseEntity<JobDTO> getJobById(@PathVariable Long id) {
+        JobDTO jobDTO = jobservice.getJobById(id);
+        if (jobDTO != null){
+            return new ResponseEntity<>(jobDTO, HttpStatus.OK);
         }
         return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
