@@ -5,6 +5,7 @@ import com.example.jobms.Job.External.Company;
 import com.example.jobms.Job.JobRepository;
 import com.example.jobms.Job.Job;
 import com.example.jobms.Job.JobService;
+import com.example.jobms.Job.mapper.JobMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
@@ -59,10 +60,14 @@ public class JobServiceImpl implements JobService {
         //add a for loop because, for every job I have in this list I need the company details
         //every job has a companyId, so with the help of loop I iterate list of job and fetch companyId from job
         //using RestTemplate call company microservice and get the company object and add it to the DTO
-        JobWithCompanyDTO jobWithCompanyDTO = new JobWithCompanyDTO();
-        jobWithCompanyDTO.setJob(job);
+
+//        JobWithCompanyDTO jobWithCompanyDTO = new JobWithCompanyDTO();
+//        jobWithCompanyDTO.setJob(job);
 //        RestTemplate restTemplate = new RestTemplate();
+
         Company company = restTemplate.getForObject("http://COMPANYMS:8081/companies/"+job.getCompanyId(), Company.class);
+
+        JobWithCompanyDTO jobWithCompanyDTO = JobMapper.mapToJobWithCompanyDTO(job, company);
         jobWithCompanyDTO.setCompany(company);
 
         return jobWithCompanyDTO;
