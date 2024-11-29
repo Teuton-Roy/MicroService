@@ -78,15 +78,18 @@ public class JobServiceImpl implements JobService {
 
 
     //Implement getJobById
+    //I need to add company object to the response, for that I use JobWithCompanyDTO class
     @Override
-    public Job getJobById(Long id) {
+    public JobWithCompanyDTO getJobById(Long id) {
 //        for(Job job: jobs){
 //            if(job.getId().equals(id)) {
 //                return job;
 //            }
 //        }
 //        return null;
-        return jobRepository.findById(id).orElse(null);
+        Job job = jobRepository.findById(id).orElse(null);
+        //Now convert this job into JobWithCompanyDTO object
+        return ConvertToDTO(job);
     }
 
 

@@ -14,7 +14,7 @@ public interface JobService {
 //    List<Job>findall();
     List<JobWithCompanyDTO> findall();
     void createJob(Job job);
-    Job getJobById(Long id);
+    JobWithCompanyDTO getJobById(Long id);
     boolean DeleteJobById(Long id);
     boolean UpdateJobById(Long id, Job updatedJob);
 }
